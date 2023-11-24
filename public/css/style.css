@@ -17,13 +17,13 @@ body {
 }
 
 .shape1 {
-    background-color: #f79233;
+    background-color: #fdbd3f;
     width: 100px; height: 100px;
     top: -50px; right: -50px;
 }
 
 .shape2 {
-    background-color: #0c82c4;
+    background-color: #f58823;
     width: 150px; height: 150px;
     top: 200px; left: -75px;
     transform: rotate(20deg);
@@ -37,7 +37,7 @@ body {
 }
 
 .shape4 {
-    background-color: #5dba51;
+    background-color: #d42e12;
     width: 100px; height: 100px;
     bottom: 150px; left: 50px;
     transform: rotate(-30deg);
@@ -51,7 +51,7 @@ body {
 }
 
 .shape6 {
-    background-color: #fdbd3f; /* Usa uno de los colores de tu paleta */
+    background-color: #0c82c4; /* Usa uno de los colores de tu paleta */
     width: 80px; height: 80px;
     top: 400px; left: 10%;
     border-radius: 50%;
@@ -59,9 +59,9 @@ body {
 }
 
 .shape7 {
-    background-color: #d42e12; /* Otro color de tu paleta */
+    background-color: #5dba51; /* Otro color de tu paleta */
     width: 60px; height: 60px;
-    bottom: 50px; right: 15%;
+    bottom: 90px; right: 15%;
     transform: rotate(45deg); /* Rotación inicial */
     animation: float2 8s ease-in-out infinite; /* Otra variación de la animación */
 }

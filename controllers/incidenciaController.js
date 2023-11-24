@@ -2,31 +2,36 @@ const Incidencia = require('../models/incidencia');
 const Remitente = require('../models/remitente');
 
 exports.crearIncidenciaConRemitente = (req, res) => {
-    console.log(req.body); // Imprimirá el cuerpo de la solicitud
-
-    const datosRemitente = req.body.remitente;
+    console.log(req.body); // Para mostrar por consola
     let datosIncidencia = req.body.incidencia;
+    datosIncidencia.id_estado = datosIncidencia.id_estado || 1; // Estado "Nuevo" por defecto
 
-    // Establecer el valor predeterminado de '1' para id_tipo_incidencia si no se proporciona
-    datosIncidencia.id_tipo_incidencia = datosIncidencia.id_tipo_incidencia || 1;
-
-    Remitente.crear(datosRemitente, (errorRemitente, resultadoRemitente) => {
-        if (errorRemitente) {
-            return res.status(500).send({ mensaje: "Error al crear remitente", error: errorRemitente });
-        }
-
-        const idRemitente = resultadoRemitente.insertId;
-        datosIncidencia.id_remitente = idRemitente;
-        datosIncidencia.id_estado = 1; // Estado "Nuevo" por defecto
-
-        Incidencia.crear(datosIncidencia, (errorIncidencia, resultadoIncidencia) => {
-            if (errorIncidencia) {
-                return res.status(500).send({ mensaje: "Error al crear incidencia", error: errorIncidencia });
+    if (req.body.remitente && req.body.remitente.id_remitente) {
+        // Caso: Usar un remitente existente
+        datosIncidencia.id_remitente = req.body.remitente.id_remitente;
+        crearIncidencia(datosIncidencia, res);
+    } else {
+        // Caso: Crear un nuevo remitente
+        const datosRemitente = req.body.remitente;
+        Remitente.crear(datosRemitente, (errorRemitente, resultadoRemitente) => {
+            if (errorRemitente) {
+                return res.status(500).send({ mensaje: "Error al crear remitente", error: errorRemitente });
             }
-            res.status(201).send({ mensaje: "Incidencia creada exitosamente", idIncidencia: resultadoIncidencia.insertId });
+
+            datosIncidencia.id_remitente = resultadoRemitente.insertId;
+            crearIncidencia(datosIncidencia, res);
         });
-    });
+    }
 };
+
+function crearIncidencia(datosIncidencia, res) {
+    Incidencia.crear(datosIncidencia, (errorIncidencia, resultadoIncidencia) => {
+        if (errorIncidencia) {
+            return res.status(500).send({ mensaje: "Error al crear incidencia", error: errorIncidencia });
+        }
+        res.status(201).send({ mensaje: "Incidencia creada exitosamente", idIncidencia: resultadoIncidencia.insertId });
+    });
+}
 
 exports.crearIncidencia = (req, res) => {
     Incidencia.crear(req.body, (error, resultado) => {
@@ -45,5 +50,3 @@ exports.obtenerIncidencias = (req, res) => {
         res.status(200).send(incidencias);
     });
 };
-
-// Puedes agregar más controladores para actualizar, eliminar, etc.

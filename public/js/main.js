@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function cargarTiposIncidencia() {
-    fetch('/api/tipoIncidencia')
+    fetch('/api/tipoIncidencia') // Asegúrate de que esta URL sea correcta
         .then(response => response.json())
         .then(data => {
             const select = document.getElementById('tipoIncidencia');
@@ -14,7 +14,10 @@ function cargarTiposIncidencia() {
                 select.appendChild(option);
             });
         })
-        .catch(error => console.error('Error:', error));
+        .catch(error => {
+            console.error('Error al cargar tipos de incidencia:', error);
+            mostrarMensaje('Error al cargar tipos de incidencia.', 'error');
+        });
 }
 
 document.getElementById('formularioIncidencia').addEventListener('submit', function(event) {
@@ -38,22 +41,40 @@ document.getElementById('formularioIncidencia').addEventListener('submit', funct
         incidencia: datosIncidencia
     };
 
-    fetch('/api/incidencias', {
+    fetch('/api/incidencias', { // Asegúrate de que esta URL sea correcta
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(datosParaEnviar)
     })
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('La respuesta del servidor no es OK');
+        }
+        return response.json();
+    })
     .then(data => {
-        document.getElementById('mensaje').textContent = 'Incidencia enviada con éxito.';
-        console.log('Success:', data);
+        Swal.fire({
+            title: '¡Éxito!',
+            text: 'Incidencia enviada con éxito.',
+            icon: 'success',
+            confirmButtonText: 'Aceptar'
+        });
+        this.reset(); // Resetea el formulario después del envío exitoso
     })
     .catch((error) => {
-        document.getElementById('mensaje').textContent = 'Error al enviar la incidencia.';
-        console.error('Error:', error);
+        Swal.fire({
+            title: 'Error',
+            text: 'Error al enviar la incidencia: ' + error.message,
+            icon: 'error',
+            confirmButtonText: 'Aceptar'
+        });
     });
-
-    this.reset(); // Resetea el formulario después del envío
 });
+
+function mostrarMensaje(mensaje, tipo) {
+    const divMensaje = document.getElementById('mensaje');
+    divMensaje.textContent = mensaje;
+    divMensaje.className = tipo; // Esto permite aplicar diferentes estilos según sea éxito o error
+}

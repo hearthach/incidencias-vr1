@@ -1,20 +1,170 @@
+/* Estilos generales */
+body {
+    background-color: #f3f3f3; /* Fondo claro */
+    color: #333; /* Texto oscuro para legibilidad */
+    font-family: 'Arial', sans-serif;
+    overflow: hidden; /* Ocultar desbordamiento para efectos de fondo */
+}
+
+/* Estilos para formas geométricas de fondo */
+.shape {
+    position: absolute;
+    border-radius: 4px;
+    opacity: 0.7;
+    z-index: -1;
+    transition: all 0.5s ease; /* Transición suave */
+    animation: float 5s ease-in-out infinite; /* Animación personalizada */
+}
+
+.shape1 {
+    background-color: #f79233;
+    width: 100px; height: 100px;
+    top: -50px; right: -50px;
+}
+
+.shape2 {
+    background-color: #0c82c4;
+    width: 150px; height: 150px;
+    top: 200px; left: -75px;
+    transform: rotate(20deg);
+}
+
+.shape3 {
+    background-color: #fdbd3f;
+    width: 120px; height: 120px;
+    bottom: -60px; right: 100px;
+    border-radius: 50%;
+}
+
+.shape4 {
+    background-color: #5dba51;
+    width: 100px; height: 100px;
+    bottom: 150px; left: 50px;
+    transform: rotate(-30deg);
+}
+
+.shape5 {
+    background-color: #d42e12;
+    width: 200px; height: 200px;
+    top: 300px; right: -100px;
+    border-radius: 50%;
+}
+
+.shape6 {
+    background-color: #fdbd3f; /* Usa uno de los colores de tu paleta */
+    width: 80px; height: 80px;
+    top: 400px; left: 10%;
+    border-radius: 50%;
+    animation: float2 6s ease-in-out infinite; /* Una variación de la animación */
+}
+
+.shape7 {
+    background-color: #d42e12; /* Otro color de tu paleta */
+    width: 60px; height: 60px;
+    bottom: 50px; right: 15%;
+    transform: rotate(45deg); /* Rotación inicial */
+    animation: float2 8s ease-in-out infinite; /* Otra variación de la animación */
+}
+
+/* Definiciones de animaciones */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) rotate(0);
+    }
+    50% {
+        transform: translateY(-20px) rotate(20deg);
+    }
+}
+
+@keyframes float2 {
+    0%, 100% {
+        transform: translateY(0) rotate(-20deg);
+    }
+    50% {
+        transform: translateY(20px) rotate(10deg);
+    }
+}
+
+/* Efecto de hover en las formas geométricas */
+.shape:hover {
+    transform: rotate(20deg) scale(1.1); /* Rota y escala ligeramente al pasar el mouse */
+    opacity: 0.9; /* Hace la forma un poco más opaca */
+}
+
+/* Estilos para el contenedor y formulario */
+.container {
+    position: relative;
+    text-align: center;
+    padding: 20px;
+    z-index: 1; /* Asegura que el texto esté sobre las formas */
+}
+
+/* Estilos para el título */
+h1 {
+    color: #d42e12; /* Color rojo predominante para el título */
+    text-align: center;
+}
+
 /* Estilos básicos para el formulario */
 form {
-    max-width: 500px;
-    margin: 0 auto;
+    max-width: 600px;
+    margin: 20px auto;
     padding: 20px;
-    background-color: #fff;
-    border: 1px solid #ddd;
+    background-color: #fff; /* Fondo blanco para el formulario */
+    border: 1px solid #d42e12; /* Borde en color rojo predominante */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
+
 form label {
     display: block;
-    margin-top: 10px;
+    margin-top: 20px;
+    color: #0c82c4; /* Azul para las etiquetas */
+    font-size: 16px;
 }
+
 form input, form select, form textarea {
     width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-}
-form button {
+    padding: 10px;
     margin-top: 10px;
+    border: 1px solid #d42e12; /* Borde en color rojo */
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Ajuste para el área de texto */
+form textarea {
+    height: 100px; /* Aumenta la altura del área de texto */
+}
+
+form button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    background-color: #d42e12; /* Botón en color rojo predominante */
+    color: #fff; /* Texto blanco para el botón */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+form button:hover {
+    background-color: #b3240e; /* Rojo más oscuro al pasar el mouse */
+}
+
+.mensaje {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 16px;
+    color: #5dba51; /* Verde para mensajes */
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    form {
+        width: 90%;
+        margin: 10px auto;
+    }
 }

@@ -3,33 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario de Incidencia</title>
+    <title>Buzón de Incidencias</title>
     <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Alertas con sweetalert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
-    <h1>Formulario de Incidencia</h1>
-    <form id="formularioIncidencia">
-        <h2>Datos del Remitente</h2>
-        <input type="text" id="nombres" placeholder="Nombres" required><br>
-        <input type="text" id="apellido_paterno" placeholder="Apellido Paterno" required><br>
-        <input type="text" id="apellido_materno" placeholder="Apellido Materno" required><br>
-        <input type="email" id="email" placeholder="Email"><br>
-        <input type="text" id="telefono" placeholder="Teléfono"><br>
+    <!-- ANIMACIONES GEOMETRICAS -->
+    <div class="shape shape1"></div>
+    <div class="shape shape2"></div>
+    <div class="shape shape3"></div>
+    <div class="shape shape4"></div>
+    <div class="shape shape5"></div>
+    <div class="shape shape6"></div>
+    <div class="shape shape7"></div>
+    <!-- ANIMACIONES GEOMETRICAS -->
+    <div class="container">
+        <h1>Buzón de Incidencias - PSP</h1>
+        <form id="formularioIncidencia" class="formulario-incidencia">
+            <section class="datos-remitente">
+                <h2>Datos del Remitente</h2>
+                <input type="text" id="nombres" placeholder="Nombres" required>
+                <input type="text" id="apellido_paterno" placeholder="Apellido Paterno" required>
+                <input type="text" id="apellido_materno" placeholder="Apellido Materno" required>
+                <input type="email" id="email" placeholder="Email">
+                <input type="text" id="telefono" placeholder="Teléfono">
+            </section>
 
-        <h2>Detalles de la Incidencia</h2>
-        <label for="tipoIncidencia">Tipo de Incidencia:</label>
-        <select id="tipoIncidencia" required>
-            <option value="">Seleccione un tipo</option>
-            <!-- Las opciones se llenarán dinámicamente -->
-        </select><br>
+            <section class="detalles-incidencia">
+                <h2>Detalles de la Incidencia</h2>
+                <label for="tipoIncidencia">Tipo de Incidencia:</label>
+                <select id="tipoIncidencia" required>
+                    <option value="">Seleccione un tipo</option>
+                </select>
+                <textarea id="descripcion" placeholder="Descripción de la incidencia" required></textarea>
+            </section>
+            
+            <button type="submit" class="btn-enviar">Enviar Incidencia</button>
+        </form>
 
-        <textarea id="descripcion" placeholder="Descripción de la incidencia" required></textarea><br>
-        
-        <button type="submit">Enviar Incidencia</button>
-    </form>
+        <div id="mensaje" class="mensaje"></div>
+    </div>
 
-    <div id="mensaje"></div>
-
-    <script src="main.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>

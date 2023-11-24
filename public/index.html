@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Incidencia</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <h1>Formulario de Incidencia</h1>
+    <form id="formularioIncidencia">
+        <h2>Datos del Remitente</h2>
+        <input type="text" id="nombres" placeholder="Nombres" required><br>
+        <input type="text" id="apellido_paterno" placeholder="Apellido Paterno" required><br>
+        <input type="text" id="apellido_materno" placeholder="Apellido Materno" required><br>
+        <input type="email" id="email" placeholder="Email"><br>
+        <input type="text" id="telefono" placeholder="Teléfono"><br>
+
+        <h2>Detalles de la Incidencia</h2>
+        <label for="tipoIncidencia">Tipo de Incidencia:</label>
+        <select id="tipoIncidencia" required>
+            <option value="">Seleccione un tipo</option>
+            <!-- Las opciones se llenarán dinámicamente -->
+        </select><br>
+
+        <textarea id="descripcion" placeholder="Descripción de la incidencia" required></textarea><br>
+        
+        <button type="submit">Enviar Incidencia</button>
+    </form>
+
+    <div id="mensaje"></div>
+
+    <script src="main.js"></script>
+</body>
+</html>
